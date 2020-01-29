@@ -15,13 +15,18 @@ class MY_Controller extends CI_Controller {
     }
     
     public function loadViewOnly($view,$data){
-		$this->load->view('template/header');
+		$this->load->view('template/header',$data);
 		$this->load->view($view,$data);
 		$this->load->view('template/footer');
 	}
 
 	public function loadView($view,$data){
-		$this->load->view('template/header');
+		$this->load->view('template/header',$data);
+		$this->load->view($view,$data);
+		$this->load->view('template/footer');
+	}
+	public function loadViewNavbar($view,$data){
+		$this->load->view('template/header',$data);
 		$this->load->view('template/navigation',$data);
 		$this->load->view($view,$data);
 		$this->load->view('template/footer');

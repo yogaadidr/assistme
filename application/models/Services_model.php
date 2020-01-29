@@ -12,6 +12,36 @@ class Services_model extends CI_Model {
     public function loginUser($data){
         return $this->getAPI("POST","/login",$data);
     }
+
+    public function getSaldo($rekening){
+        $data['no_rekening'] = $rekening;
+        return $this->getAPI("POST","/saldo",$data);
+    }
+    public function getTransaksiHariIni(){
+        $data['jenis'] = 'harian';
+        date_default_timezone_set("Asia/Bangkok");
+        $data['tanggal_awal'] = date('Y-m-d');
+        $data['tanggal_akhir'] = date('Y-m-d');
+        return $this->getAPI("POST","/transaksi/list",$data);
+    }
+    public function getRekening(){
+        return $this->getAPI("GET","/rekening");
+    }
+
+    public function getKategori($jenis){
+        if($jenis == 'keluar'){
+            return $this->getAPI("GET","/kategori/cash_out");
+        }else if($jenis == 'masuk'){
+            return $this->getAPI("GET","/kategori/cash_in");
+        }else if($jenis == 'transfer'){
+            return $this->getAPI("GET","/kategori");
+        }
+        
+    }
+
+    public function addTransaksi($data){
+        return $this->getAPI("POST","/transaksi/tambah",$data);
+    }
     
     public function getAPI($method,$url,$body = null){
 

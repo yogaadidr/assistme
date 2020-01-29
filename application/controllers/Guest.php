@@ -11,10 +11,11 @@ class Guest extends MY_Controller {
     public function login()
 	{
         $dataLogin = $this->session->userdata('dataLogin');
+        $data['title'] = 'Login';
         if($dataLogin != null){
             redirect('home');
         }else{
-            $this->loadView('login_view','');
+            $this->loadView('login_view',$data);
         }
     }
     public function auth()
