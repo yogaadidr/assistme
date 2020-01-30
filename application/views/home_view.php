@@ -86,17 +86,17 @@
       <div class="container">
         <div class="columns is-mobile">
           <div class="column text-center is-one-third">
-            <a href="<?= base_url() ?>index.php/home/transaksi/masuk" class="dasboard-menu-item">
+            <a href="<?= base_url() ?>home/transaksi/masuk" class="dasboard-menu-item">
               <img class='dasboard-menu-item-image' src="<?= base_url() ?>assets/image/cash_in.png" />
               Pemasukan</a>
           </div>
           <div class="column text-center is-one-third">
-            <a href="<?= base_url() ?>index.php/home/transaksi/keluar" class="dasboard-menu-item">
+            <a href="<?= base_url() ?>home/transaksi/keluar" class="dasboard-menu-item">
               <img class='dasboard-menu-item-image' src="<?= base_url() ?>assets/image/cash_out.png" />
               Pengeluaran</a>
           </div>
           <div class="column text-center is-one-third">
-            <a href="<?= base_url() ?>index.php/home/transaksi/transfer" class="dasboard-menu-item">
+            <a href="<?= base_url() ?>home/transaksi/transfer" class="dasboard-menu-item">
               <img class='dasboard-menu-item-image' src="<?= base_url() ?>assets/image/transfer.png" />
               Transfer</a>
           </div>
