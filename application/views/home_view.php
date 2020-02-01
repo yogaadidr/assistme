@@ -107,6 +107,34 @@
     
   </div>
 </section>
+
+<section class="section section-normal">
+    <div class="container">
+        <div class="columns is-mobile">
+            <div class="column is-half">
+              <a href="<?= base_url("index.php/home/rekening") ?>">
+                <div class="card card-round">
+                  <div class="card-content">
+                    <p>
+                      <center>Daftar Rekening</center>
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="column is-half">
+              <div class="card card-round">
+                <div class="card-content">
+                  <p>
+                    <center>Daftar Anggaran</center>
+                  </p>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="section section-normal">
     <div class="container">
         <div class="columns is-mobile">

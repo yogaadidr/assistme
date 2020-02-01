@@ -62,6 +62,14 @@ class Home extends MY_Controller {
         
     }
 
+    public function rekening($norek = null)
+	{
+        $data['rekening'] = $this->services_model->getSaldoRekening();
+        $data['title'] = 'Daftar Rekening' ;
+        $this->loadViewNavbar('rekening_view',$data);
+        
+    }
+
     public function logout(){
         $this->session->unset_userdata('dataLogin',$cek['data']);
         redirect('login');

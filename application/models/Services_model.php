@@ -27,6 +27,10 @@ class Services_model extends CI_Model {
     public function getRekening(){
         return $this->getAPI("GET","/rekening");
     }
+    public function getSaldoRekening(){
+        $data['no_rekening'] = 'rekening';
+        return $this->getAPI("POST","/rekening/saldo",$data);
+    }
 
     public function getKategori($jenis){
         if($jenis == 'keluar'){
