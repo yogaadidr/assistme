@@ -23,8 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/assistme/';
-$config['api_url'] = 'http://localhost/assistme_api/api';
+$config['base_url'] = 'http://yogaadi.xyz/assistme/';
+$config['api_url'] = 'http://yogaadi.xyz/assistme_api/api';
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +36,7 @@ $config['api_url'] = 'http://localhost/assistme_api/api';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------

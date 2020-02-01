@@ -3,7 +3,7 @@
         <div class="columns is-mobile">
             <div class="column is-mobile">
                 <h1 class="title">Login</h1>
-                <form action="<?= base_url() ?>index.php/login/auth" method="POST">
+                <form action="<?= base_url() ?>login/auth" method="POST">
                     <div class="field">
                     <p class="control has-icons-left has-icons-right">
                         <input class="input" type="text" placeholder="Username" name="username">
