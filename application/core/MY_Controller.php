@@ -12,12 +12,10 @@ class MY_Controller extends CI_Controller {
 	public function api_url()
 	{
 		return $this->config->item('api_url');
-    }
+	}
     
     public function loadViewOnly($view,$data){
-		$this->load->view('template/header',$data);
 		$this->load->view($view,$data);
-		$this->load->view('template/footer');
 	}
 
 	public function loadView($view,$data){

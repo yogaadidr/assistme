@@ -24,8 +24,22 @@ class Services_model extends CI_Model {
         $data['tanggal_akhir'] = date('Y-m-d');
         return $this->getAPI("POST","/transaksi/list",$data);
     }
-    public function getRekening(){
-        return $this->getAPI("GET","/rekening");
+
+    public function getTransaksiRekening($input){
+        $data['jenis'] = 'harian';
+        $data['tanggal_awal'] = $input['tanggal'];
+        $data['tanggal_akhir'] = $input['tanggal'];
+        $data['rekening'] = $input['rekening'];
+        date_default_timezone_set("Asia/Bangkok");
+        return $this->getAPI("POST","/transaksi/list",$data);
+    }
+
+    public function getRekening($rekening = null){
+        if($rekening != null){
+            return $this->getAPI("GET","/rekening/".$rekening);
+        }else{
+            return $this->getAPI("GET","/rekening");
+        }
     }
     public function getSaldoRekening(){
         $data['no_rekening'] = 'rekening';

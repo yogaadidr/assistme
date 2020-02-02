@@ -1,84 +1,44 @@
-
-
-<section class="hero is-primary hero-dashboard">
-  <div class="hero-body">
-    <div class="container">
-    <div class="columns is-mobile">
-          <div class="column is-two-thirds">
-          <h1 class="subtitle">
-            Saldo
-          </h1>
-          <h2 class="title">
-            <?= 'Rp. '.number_format($total_saldo) ?>
-          </h2>
-          </div>
-          <div class="column is-one-third">
-          <a class="button" href="home/logout" style="float:right;margin-top:24px;">Logout</a>
-          </div>
-    </div>
-    
-    </div>
-  </div>
-</section>
-<section class="container container-float-button">
-  <div class="card card-round">
-    <div class="card-content card-dashboard">
-      <div class="container">
-        <div class="columns is-mobile">
-          <div class="column text-center is-one-third">
-            <a href="<?= base_url() ?>home/transaksi/masuk" class="dasboard-menu-item">
-              <img class='dasboard-menu-item-image' src="<?= base_url() ?>assets/image/cash_in.png" />
-              Pemasukan</a>
-          </div>
-          <div class="column text-center is-one-third">
-            <a href="<?= base_url() ?>home/transaksi/keluar" class="dasboard-menu-item">
-              <img class='dasboard-menu-item-image' src="<?= base_url() ?>assets/image/cash_out.png" />
-              Pengeluaran</a>
-          </div>
-          <div class="column text-center is-one-third">
-            <a href="<?= base_url() ?>home/transaksi/transfer" class="dasboard-menu-item">
-              <img class='dasboard-menu-item-image' src="<?= base_url() ?>assets/image/transfer.png" />
-              Transfer</a>
-          </div>
-        </div>
-      </div>
-     
-    </div>
-    
-  </div>
-</section>
-
-<section class="section section-normal">
-    <div class="container">
-        <div class="columns is-mobile">
-            <div class="column is-half">
-              <a href="<?= base_url("index.php/home/rekening") ?>">
-                <div class="card card-round">
-                  <div class="card-content">
-                  <img class='dasboard-menu-item-image' src="<?= base_url() ?>assets/image/card.png" />
-
-                    <p>
-                      <center>Daftar Rekening</center>
-                    </p>
-                  </div>
-                </div>
+<div class="container">
+    <div class="box">
+        <div class="field has-addons">
+            <p class="control is-expanded">
+              <input class="input" id="tanggal" name="tanggal" type="date" value="<?= date('Y-m-d') ?>" placeholder="Amount of money">
+            </p>
+            <p class="control">
+              <a class="button" onclick="getTanggal()">
+                Filter
               </a>
-            </div>
-            <div class="column is-half">
-              <div class="card card-round">
-                <div class="card-content">
-                <img class='dasboard-menu-item-image' src="<?= base_url() ?>assets/image/budget.png" />
-                  <p>
-                    <center>Daftar Anggaran</center>
-                  </p>
-                </div>
-              </div>
-            </div>
-        </div>
+            </p>
+          </div>
+          
     </div>
-</section>
+</div>
+<div id="content">
 
-<section class="section section-normal">
+</div>
+
+<script>
+$(document).ready(function(){
+    getTanggal();
+});
+
+
+function getTanggal(){
+    var url = "<?php echo base_url() ?>index.php/home/getTransaksiRekening"; 
+    var tanggal = $("#tanggal").val();
+    var rekening = "<?php echo $rekening['no_rekening'] ?>";
+    $.ajax({
+        method: "POST",
+        url: url,
+        data: { tanggal: tanggal, rekening: rekening }
+    }).done(function( msg ) {
+        $("#content").html(msg);
+    });
+}
+
+
+</script>
+<!-- <section class="section section-normal">
     <div class="container">
         <div class="columns is-mobile">
             <div class="column is-full">
@@ -138,4 +98,4 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->

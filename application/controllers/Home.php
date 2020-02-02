@@ -24,10 +24,9 @@ class Home extends MY_Controller {
 		$this->loadView('home_view',$data);
     }
 
-    public function transaksi($jenis)
+    public function transaksi($jenis,$rekening = null)
 	{
         if($jenis == 'tambah'){
-
             $data['tanggal_transaksi'] = $this->input->post("tanggal_transaksi");
             $data['nominal'] = $this->input->post("nominal");
             $data['rekening_asal'] = $this->input->post("rekening_asal");
@@ -59,15 +58,28 @@ class Home extends MY_Controller {
             $data['title'] = 'Transaksi '.$jenis ;
             $this->loadViewNavbar('transaksi_view',$data);
         }
-        
+    }
+
+    public function getTransaksiRekening(){
+        $input['tanggal'] = date('Y-m-d',strtotime($this->input->post("tanggal"))); 
+        $input['rekening'] = $this->input->post("rekening"); 
+        $data['transaksi'] = $this->services_model->getTransaksiRekening($input);
+        $this->loadViewOnly('widget/transaksi_list',$data);
     }
 
     public function rekening($norek = null)
 	{
-        $data['rekening'] = $this->services_model->getSaldoRekening();
-        $data['title'] = 'Daftar Rekening' ;
-        $this->loadViewNavbar('rekening_view',$data);
-        
+        if($norek != null){
+            $rekening = $this->services_model->getRekening($norek);
+            foreach($rekening as $data['rekening']);
+            // $data['transaksi'] = $this->services_model->getTransaksiRekening($norek);
+            $data['title'] = 'Transaksi '.$data['rekening']['nama_rekening'] ;
+            $this->loadViewNavbar('daftar_transaksi_view',$data);
+        }else{
+            $data['rekening'] = $this->services_model->getSaldoRekening();
+            $data['title'] = 'Daftar Rekening' ;
+            $this->loadViewNavbar('rekening_view',$data);
+        }
     }
 
     public function logout(){
