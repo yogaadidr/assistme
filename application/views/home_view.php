@@ -65,14 +65,16 @@
               </a>
             </div>
             <div class="column is-half">
-              <div class="card card-round">
-                <div class="card-content">
-                <img class='dasboard-menu-item-image' src="<?= base_url() ?>assets/image/budget.png" />
-                  <p>
-                    <center>Daftar Anggaran</center>
-                  </p>
+              <a href="<?= base_url("index.php/home/anggaran") ?>">
+                <div class="card card-round">
+                  <div class="card-content">
+                  <img class='dasboard-menu-item-image' src="<?= base_url() ?>assets/image/budget.png" />
+                    <p>
+                      <center>Daftar Anggaran</center>
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </a>
             </div>
         </div>
     </div>

@@ -42,16 +42,17 @@ class Home extends MY_Controller {
             }
 
             $result = $this->services_model->addTransaksi($data);
-            var_dump($result);
             if($result['statusCode'] != 200){
-                $this->session->set_flashdata("alert",$result['error']);
+                $this->set_alert(false,$result['error']);
             }else{
-                $this->session->set_flashdata("alert",'Transaksi berhasil ditambah');
+                $this->set_alert(true,'Transaksi berhasil ditambah');
             }
             redirect('home');
 
 
         }else{
+            $data['halaman_sebelum'] = 'home';
+
             $data['rekening'] = $this->services_model->getRekening();
             $data['kategori'] = $this->services_model->getKategori($jenis);
             $data['jenis'] = $jenis;
@@ -70,16 +71,66 @@ class Home extends MY_Controller {
     public function rekening($norek = null)
 	{
         if($norek != null){
+            $data['halaman_sebelum'] = 'home/rekening';
             $rekening = $this->services_model->getRekening($norek);
             foreach($rekening as $data['rekening']);
             // $data['transaksi'] = $this->services_model->getTransaksiRekening($norek);
             $data['title'] = 'Transaksi '.$data['rekening']['nama_rekening'] ;
             $this->loadViewNavbar('daftar_transaksi_view',$data);
         }else{
+            $data['halaman_sebelum'] = 'home';
             $data['rekening'] = $this->services_model->getSaldoRekening();
             $data['title'] = 'Daftar Rekening' ;
             $this->loadViewNavbar('rekening_view',$data);
         }
+    }
+
+    public function anggaran()
+	{
+        $data['halaman_sebelum'] = 'home';
+        $data['anggaran'] = $this->services_model->getAnggaran();
+        $data['title'] = 'Daftar Anggaran' ;
+        $data['tanggal'] = $this->getDateFromString(date('Y-m-d ')) ;
+        $this->loadViewNavbar('anggaran_view',$data);
+    }
+
+    public function tambah_anggaran()
+	{
+        $data['halaman_sebelum'] = 'home/anggaran';
+        $data['kategori'] = $this->services_model->getKategori('keluar');
+        $data['halaman_sebelum'] = 'home';
+        $data['title'] = 'Tambah Anggaran' ;
+        $this->loadViewNavbar('tambah_anggaran_view',$data);
+    }
+    public function proses_tambah_anggaran()
+	{
+        $data['nama_anggaran'] = $this->input->post("nama_anggaran");
+        $data['nominal_anggaran'] = $this->input->post("nominal_anggaran");
+        $data['tipe'] = $this->input->post("tipe");
+        $data['valid'] = $this->input->post("valid");
+        $data['kategori'] = $this->input->post("kategori");
+        $data['valid'] = 1;
+
+        $result = $this->services_model->addAnggaran($data);
+        if($result['statusCode'] != 200){
+            $this->set_alert(false,$result['error']);
+        }else{
+            $this->set_alert(true,'Anggaran berhasil ditambah');
+        }
+       
+       redirect("home/anggaran");
+    }
+
+    public function hapus_anggaran()
+	{
+        $id_anggaran = $this->input->post("id_anggaran");
+        $result = $this->services_model->hapusAnggaran($id_anggaran);
+        if($result['statusCode'] != 200){
+            $this->set_alert(false,$result['error']);
+        }else{
+            $this->set_alert(true,'Anggaran berhasil dihapus');
+        }
+        redirect("home/anggaran");
     }
 
     public function logout(){

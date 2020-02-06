@@ -61,6 +61,18 @@ class Services_model extends CI_Model {
         return $this->getAPI("POST","/transaksi/tambah",$data);
     }
     
+    public function getAnggaran(){
+        return $this->getAPI("GET","/anggaran/list",'');
+    }
+    public function hapusAnggaran($idAnggaran){
+        return $this->getAPI("DELETE","/anggaran/".$idAnggaran."/delete",'');
+    }
+    public function addAnggaran($data){
+        var_dump($data);
+        return $this->getAPI("POST","/anggaran/tambah",$data);
+    }
+    
+    
     public function getAPI($method,$url,$body = null){
 
         $url = $this->api_url.$url;
