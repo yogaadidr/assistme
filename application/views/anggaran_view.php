@@ -34,7 +34,7 @@
                                 }
                               ?>
                                 <div class="content is-small">
-                                  <span><strong>Pengeluaran : </strong>Rp. <?= number_format($angg['sisa_anggaran']) ?></span><br/>
+                                  <span><strong>Pengeluaran : </strong>Rp. <?= number_format($angg['total_pengeluaran']) ?></span><br/>
                                   <span><strong>Sisa Anggaran : </strong>Rp. <?= number_format($angg['sisa_anggaran']) ?></span>
                                 </div>
                             </p>
