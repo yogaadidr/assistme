@@ -24,6 +24,10 @@ class Services_model extends CI_Model {
         $data['tanggal_akhir'] = date('Y-m-d');
         return $this->getAPI("POST","/transaksi/list",$data);
     }
+    public function getTransaksiRekap(){
+        $data['periode'] = date('Y-m-d');
+        return $this->getAPI("POST","/transaksi/rekap",$data);
+    }
 
     public function getTransaksiRekening($input){
         $data['jenis'] = 'harian';
@@ -53,6 +57,8 @@ class Services_model extends CI_Model {
             return $this->getAPI("GET","/kategori/cash_in");
         }else if($jenis == 'transfer'){
             return $this->getAPI("GET","/kategori");
+        }else if($jenis == 'tagihan'){
+            return $this->getAPI("GET","/kategori/tagihan");
         }
         
     }
@@ -70,6 +76,24 @@ class Services_model extends CI_Model {
     public function addAnggaran($data){
         var_dump($data);
         return $this->getAPI("POST","/anggaran/tambah",$data);
+    }
+
+    //TAGIHAN
+    public function getTagihan(){
+        return $this->getAPI("GET","/tagihan/list",'');
+    }
+    public function getTagihanByID($idTagihan){
+        return $this->getAPI("GET","/tagihan/".$idTagihan,'');
+    }
+    public function hapusTagihan($idTagihan){
+        return $this->getAPI("DELETE","/tagihan/".$idTagihan."/delete",'');
+    }
+    public function addTagihan($data){
+        var_dump($data);
+        return $this->getAPI("POST","/tagihan/tambah",$data);
+    }
+    public function addDetailTagihan($data){
+        return $this->getAPI("POST","/tagihan/detail/tambah",$data);
     }
     
     

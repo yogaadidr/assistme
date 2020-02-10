@@ -49,7 +49,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'home';
+$route['default_controller'] = 'User';
+$route['home'] = 'user/index';
+
+$route['home/anggaran'] = 'anggaran';
+$route['home/anggaran/(:any)'] = 'anggaran/$1';
+//REKENING ROUTE
+$route['home/rekening'] = 'rekening';
+$route['home/rekening/(:any)'] = 'rekening/index/$1';
+$route['home/transaksi'] = 'transaksi';
+$route['home/transaksi/masuk'] = 'transaksi/index/masuk';
+$route['home/transaksi/keluar'] = 'transaksi/index/keluar';
+$route['home/transaksi/transfer'] = 'transaksi/index/transfer';
+$route['home/transaksi/tambah'] = 'transaksi/index/tambah';
+$route['home/transaksi/(:any)'] = 'transaksi/$1';
+$route['home/user'] = 'user';
+$route['home/user/(:any)'] = 'user/$1';
+$route['home/tagihan'] = 'tagihan';
+$route['home/tagihan/(:any)'] = 'tagihan/$1';
 $route['login'] = 'guest/login';
 $route['login/auth'] = 'guest/auth';
 $route['404_override'] = '';

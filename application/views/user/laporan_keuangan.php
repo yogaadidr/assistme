@@ -1,44 +1,78 @@
-<div class="container">
-    <div class="box">
-        <div class="field has-addons">
-            <p class="control is-expanded">
-              <input class="input" id="tanggal" name="tanggal" type="date" value="<?= date('Y-m-d') ?>" placeholder="Amount of money">
-            </p>
-            <p class="control">
-              <a class="button" onclick="getTanggal()">
-                Filter
-              </a>
-            </p>
+
+
+<section class="hero is-primary hero-dashboard">
+  <div class="hero-body">
+    <div class="container">
+    <div class="columns is-mobile">
+          <div class="column is-two-thirds">
+          <h1 class="subtitle">
+            Saldo <?= $tanggal['month_name'] ?>
+          </h1>
+          <h2 class="title">
+            <?= 'Rp. '.number_format($total_saldo) ?>
+          </h2>
           </div>
-          
+         
     </div>
-</div>
-<div id="content">
+    
+    </div>
+  </div>
+</section>
+<section class="container container-float-button">
+  <div class="card card-round">
+    <div class="card-content card-dashboard">
+      <div class="container">
+        <div class="columns is-mobile">
+          <div class="column text-center is-half">
+            Total Pengeluaran<br/>
+            <strong>Rp. <?= number_format($rekap['pengeluaran']) ?></strong>
+          </div>
+          <div class="column text-center is-half">
+            Total Pemasukan<br/>
+            <strong>Rp. <?= number_format($rekap['pemasukan']) ?></strong>
 
-</div>
+          </div>
+        </div>
+      </div>
+     
+    </div>
+    
+  </div>
+</section>
+<!-- 
+<section class="section section-normal">
+    <div class="container">
+        <div class="columns is-mobile">
+            <div class="column is-half">
+              <a href="<?= base_url("index.php/home/rekening") ?>">
+                <div class="card card-round">
+                  <div class="card-content">
+                  <img class='dasboard-menu-item-image' src="<?= base_url() ?>assets/image/card.png" />
 
-<script>
-$(document).ready(function(){
-    getTanggal();
-});
+                    <p>
+                      <center>Daftar Rekening</center>
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <div class="column is-half">
+              <a href="<?= base_url("index.php/home/anggaran") ?>">
+                <div class="card card-round">
+                  <div class="card-content">
+                  <img class='dasboard-menu-item-image' src="<?= base_url() ?>assets/image/budget.png" />
+                    <p>
+                      <center>Daftar Anggaran</center>
+                    </p>
+                  </div>
+                </div>
+              </a>
+            </div>
+        </div>
+    </div>
+</section> -->
 
-
-function getTanggal(){
-    var url = "<?php echo base_url() ?>index.php/home/getTransaksiRekening"; 
-    var tanggal = $("#tanggal").val();
-    var rekening = "<?php echo $rekening['no_rekening'] ?>";
-    $.ajax({
-        method: "POST",
-        url: url,
-        data: { tanggal: tanggal, rekening: rekening }
-    }).done(function( msg ) {
-        $("#content").html(msg);
-    });
-}
-
-
-</script>
-<!-- <section class="section section-normal">
+<section class="section section-normal">
     <div class="container">
         <div class="columns is-mobile">
             <div class="column is-full">
@@ -98,4 +132,4 @@ function getTanggal(){
             </div>
         </div>
     </div>
-</section> -->
+</section>

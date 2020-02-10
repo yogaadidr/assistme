@@ -13,10 +13,17 @@
         <div class="field">
             <label class="label">Nominal</label>
             <div class="control">
-            <input class="input" name="nominal" type="number" required placeholder="Rp. 0">
+            <input class="input" name="nominal" type="number" <?php if($jenis == 'tagihan'){echo 'value="'.$tagihan['nominal_tagihan'].'"';} ?> required placeholder="Rp. 0">
+            <?php
+            if($jenis=='tagihan'){ ?>
+              <input name="id_tagihan" type="hidden" value="<?= $tagihan['id_tagihan'] ?>">
+              <input name="jenis" type="hidden" value="tagihan">
+              
+            <?php }
+            ?>
             </div>
         </div>
-        <?php if($jenis == 'keluar' || $jenis == 'transfer'){ ?>
+        <?php if($jenis == 'keluar' || $jenis == 'transfer' || $jenis == 'tagihan'){ ?>
         <div class="field">
             <label class="label">Dari Rekening</label>
             <div class="field">
@@ -68,7 +75,11 @@
                   <span class="select input-select">
                     <select name="kategori">
                         <?php foreach($kategori['data'] as $kategori){
-                            echo '<option value="'.$kategori['id_kategori'].'">'.$kategori['nama_kategori'].'</option>';
+                            if($jenis == 'tagihan' && $tagihan['kategori'] == $kategori['id_kategori']){
+                              echo '<option value="'.$kategori['id_kategori'].'" selected>'.$kategori['nama_kategori'].'</option>';
+                            }else{
+                              echo '<option value="'.$kategori['id_kategori'].'">'.$kategori['nama_kategori'].'</option>';
+                            }
                         } ?>
                     </select>
                   </span>

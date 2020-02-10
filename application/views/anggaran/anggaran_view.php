@@ -2,7 +2,7 @@
     <div class="container">
         <div class="columns is-mobile">
             <div class="column is-full">
-                <a href="<?= base_url() ?>index.php/home/tambah_anggaran" class="button is-info">Tambah Anggaran</a><br/><br/>
+                <a href="<?= base_url() ?>index.php/home/anggaran/tambah" class="button is-info">Tambah Anggaran</a><br/><br/>
                 <?php if($this->session->flashdata('alert')!=null){
                   echo "<center>".$this->session->flashdata('alert')."</center>";
                 } ?>
@@ -61,7 +61,7 @@
         Yakin nih anggarannya mau dihapus?
       </section>
       <footer class="modal-card-foot">
-        <form method="post" action="<?= base_url() ?>index.php/home/hapus_anggaran">
+        <form method="post" action="<?= base_url() ?>index.php/home/anggaran/hapus">
             <input type="hidden" id="id" name="id_anggaran">
             <button class="button" type="button" onclick="batal()">Gak deh</button>
             <button class="button is-success" type="submit">Yakin</button>

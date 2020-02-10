@@ -6,7 +6,11 @@ class Guest extends MY_Controller {
     function __construct(){
         parent::__construct();
         $this->load->model('services_model');
-	}
+    }
+    
+    public function index(){
+        
+    }
     
     public function login()
 	{

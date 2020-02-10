@@ -9,7 +9,7 @@
 </style>
 <section class="section">
     <div class="container">
-        <form action="<?= base_url() ?>index.php/home/proses_tambah_anggaran" method="POST">
+        <form action="<?= base_url() ?>index.php/home/anggaran/proses_tambah_anggaran" method="POST">
 
         <div class="field">
             <label class="label">Nama Anggaran</label>
